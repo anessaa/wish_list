@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dashboard</title>
+
+  </head>
+  <body>
+    <h1>Hello, {{user.name}}!</h1>
+    <a href="/logout">Logout</a>
+    <a href="/wish_items">Add Item</a>
+
+    <h2>Your Wish List</h2>
+      <table>
+        <tr>
+          <th>
+             Item
+          </th>
+          <th>
+            Added by
+          </th>
+          <th>
+            Date Added
+          </th>
+          <th>
+            Action
+          </th>
+        </tr>
+        {% for item in items %}
+
+        <tr>
+          <td>
+
+          <a href="wish_item/{{item.id}}/display">{{item.name}}</a>
+          </td>
+          <td>
+            {{item.user.name}}
+          </td>
+          <td>
+            {{item.created_at}}
+          </td>
+            {% if item.user_id != user.id %}
+          <td> <form action="/wish_item/{{item.id}}/delete">
+            {% csrf_token %}
+            <input type="submit" value="Remove from my Wishlist">
+          </form></td>
+            {% elif item.user_id == user.id %}
+          <td> <form action="/wish_item/{{item.id}}/delete">
+            {% csrf_token %}
+            <input type="submit" value="Delete from my Wishlist">
+          </form></td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+      </table>
+      <h2>Other Users' Wish List</h2>
+        <table>
+          <tr>
+            <th>
+               Item
+            </th>
+            <th>
+              Added by
+            </th>
+            <th>
+              Date Added
+            </th>
+            <th>
+              Action
+            </th>
+          </tr>
+          {% for item in items %}
+              {% if item.user_id != user.id %}
+          <tr>
+            <td>
+          <a href="wish_item/{{item.id}}/display">{{item.name}}</a>
+            </td>
+            <td>
+              {{item.user.name}}
+            </td>
+            <td>
+              {{item.created_at}}
+            </td>
+
+            <td> <form action="/wish_items" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Add from my Wishlist">
+            </form></td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </table>
+
+  </body>
+</html>

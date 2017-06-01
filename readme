@@ -1,0 +1,20 @@
+index:
+validations
+registration
+
+dashboard:
+your wishList
+remove wishList
+delete wishlist
+
+display wishlist item:
+shows the list of users who added item to their list
+
+item create:
+validation
+add to user wish list table
+user redirected to dashboard
+
+
+PUBLIC IP:
+13.58.157.55

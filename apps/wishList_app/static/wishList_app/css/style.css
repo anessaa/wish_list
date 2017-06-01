@@ -1,0 +1,23 @@
+.spacing {
+  margin-left: 50px;
+  line-height: 170%;
+}
+h1 {
+  margin-left: 50px;
+  padding: 15px;
+}
+h2 {
+  display: inline-block;
+  border: 2px solid black;
+  margin-left: 50px;
+  padding: 15px;
+}
+p {
+  color: green;
+}
+.error{
+  color: red;
+}
+.success{
+  color: green;
+}
